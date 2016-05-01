@@ -13,8 +13,8 @@ class BuildMammouthOnSave(sublime_plugin.EventListener):
       file_extension = file_extension.encode(sys.getfilesystemencoding())
     if file_extension == ".mammouth" or file_extension == ".mmt":
       print("Compiling: " + mammouthFile)
-      if sublime.platform() == "windows":
-        os.system("mammouth -c " + mammouthFile)
+      if sublime.platform() == "windows" or sublime.platform() == "win32":
+        os.system("mammouth -c " + mammouthFile + " -o " + os.path.dirname(mammouthFile))
       else:
         view.window().run_command('exec',{'cmd': ["/usr/local/bin/mammouth", "-c", mammouthFile] })
 
