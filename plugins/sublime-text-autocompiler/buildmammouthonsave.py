@@ -9,7 +9,7 @@ class BuildMammouthOnSave(sublime_plugin.EventListener):
   def on_post_save(self, view):
     mammouthFile = view.file_name()
     filename, file_extension = os.path.splitext(mammouthFile)
-    if sublime.platform() == "windows":
+    if sublime.platform() == "windows" or sublime.platform() == "win32":
       file_extension = file_extension.encode(sys.getfilesystemencoding())
     if file_extension == ".mammouth" or file_extension == ".mmt":
       print("Compiling: " + mammouthFile)
